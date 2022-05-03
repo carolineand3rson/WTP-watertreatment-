@@ -1,1 +1,2 @@
 # WTP-watertreatment-
+Our group decided to do our project on the quality of municipal tap water. Our survey was designed to gather data on respondents’ demographics, gauge opinions and feelings on their tap water, and how our respondents obtain their drinking water. All these questions were compared to our main question, which was if one would be willing to pay a certain amount added on to their water bill if it would lead to improvement in the taste and odor of their drinking water. 
