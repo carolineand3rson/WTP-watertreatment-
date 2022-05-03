@@ -61,6 +61,35 @@ mod1 <- lm(formula = WTP ~ tapQuality + choiceDrink + householdIncome, data = WT
 summary(mod1)
 plot(mod1)
 
-mod2 <- lm(formula = )
+mod2 <- lm(formula = WTP ~ areaSize + householdIncome + race + sex + birthYear, 
+           data = WTPnoNA)
+summary(mod2)
+
+mod3 <- lm(formula = WTP ~ region + waterIntake + tapQuality + reuseBottle, data = WTPnoNA)
+summary(mod3)
+
+mod4 <- lm(formula = WTP ~ reuseBottle, data=WTPnoNA)
+summary(mod4)
+
+median(WTPnoNA$tapQuality)
+mode(WTPnoNA$tapQuality)
+
+whitewtp <- subset(WTPnoNA$race == White)
+
+WTPnoNA <- WTPnoNA[-65,]
+
+mean(WTPnoNA$WTP)
+
+colorIncome <- viridis(nrow(WTPnoNA))
 
 
+boxy <- boxplot(WTP ~ householdIncome, data = WTPnoNA, xlab = "Household Income",
+                main = "Respondents WTP based on Household Income", col = viridis::viridis(6, alpha=1))
+
+box2 <- boxplot(WTP ~ areaSize, data = WTPnoNA, xlab = "Area Size", 
+                main = "Respondents WTP based on Area Size", col = viridis::viridis(5, alpha = 1))
+
+box3 <- boxplot(WTP ~ waterIntake, data = WTPnoNA, xlab = "Water Intake", 
+                main = "Respondents WTP based on Daily Water Intake",
+                col = viridis::viridis(4, alpha=1))
+t.test(WTP ~ householdIncome, data = WTPnoNA)
