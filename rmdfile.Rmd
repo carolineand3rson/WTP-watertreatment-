@@ -1,0 +1,56 @@
+---
+title: "WTP Water treatment"
+author: "Caroline Anderson"
+date: "4/28/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load libraries and read in the initial dataset 
+```{r}
+library(readxl)
+library(dplyr)
+WTP <- read_excel("WTP water treatment improvement_April 26, 2022_08.31.xlsx")
+```
+
+Data cleaning and wrangling:
+Renaming and subsetting columns 
+```{r}
+WTP <- subset(WTP, select = c('Q1', 'Q2', 'Q3', 'Q4_1', 'Q5', 'Q6',
+                              'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12'))
+
+WTP <- WTP %>% rename('WTP'='Q1', 'region'='Q2', 'typicalWaSource' = 'Q3', 
+                      'tapQuality' = 'Q4_1',
+                      'reuseBottle' = 'Q5', 'waterIntake' = 'Q6', 'choiceDrink'
+                      = 'Q7', 'areaSize' = 'Q8', 'householdIncome' = 'Q9',
+                      'race' = 'Q10', 'sex' = 'Q11', 'birthYear' = 'Q12')
+```
+
+Creating different versions of the dataset for different visulization purposes
+```{r}
+N = 15
+
+WTPfull <- tail(WTP, -N)
+
+WTPnoNA <- na.omit(WTPfull)
+
+WTPnoNA$WTP = as.numeric(gsub("\\$", "", WTPnoNA$WTP))
+
+WTPnoNA$tapQuality = as.numeric(WTPnoNA$tapQuality)
+
+WTPnoNA <- WTPnoNA[-3,]
+WTPnoNA <- WTPnoNA[-31,]
+WTPnoNA <- WTPnoNA[-39,]
+WTPnoNA <- WTPnoNA[-47,]
+WTPnoNA <- WTPnoNA[-75,]
+WTPnoNA <- WTPnoNA[-89,]
+WTPnoNA <- WTPnoNA[-119,]
+WTPnoNA <- WTPnoNA[-3,]
+
+WTPnoNA$birthYear = as.numeric(WTPnoNA$birthYear)
+mean(WTPnoNA$birthYear)
+```
+
